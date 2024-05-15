@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::prefix("todo")->name("todo.")->group(function () {
+Route::middleware('auth')->prefix("todo")->name("todo.")->group(function () {
     Route::get("/", [\App\Http\Controllers\ToDo\ToDoWebController::class, "showAll"])->name("show-all");
     Route::get("/create", [\App\Http\Controllers\ToDo\ToDoWebController::class, "create"])->name("create-form");
     Route::get("/update/{id}", [\App\Http\Controllers\ToDo\ToDoWebController::class, "update"])->name("update-form");
